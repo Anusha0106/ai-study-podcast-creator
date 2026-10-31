@@ -1,0 +1,220 @@
+/* ==========================================================================
+   MODEL 2: SOFT GLASS (Modern Frosted Glass Aesthetic)
+   Translucent frosted glass cards, flowing burgundy-to-rose-to-cream gradient,
+   rounded pill buttons, floating blob shapes, gentle parallax.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Flowing Gradient tokens */
+  --bg-gradient: linear-gradient(135deg, #850E35 0%, #D26777 28%, #EE6983 50%, #DA8393 72%, #FFF5E4 100%);
+  --bg-glass-card: rgba(255, 245, 228, 0.55);
+  --bg-glass-border: rgba(255, 255, 255, 0.65);
+  --bg-glass-subtle: rgba(255, 245, 228, 0.35);
+
+  --text-primary: #0E1627;
+  --text-muted: #5A4349;
+  --accent-primary: #850E35;
+  --accent-secondary: #EE6983;
+
+  --radius-glass: 24px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  background-size: 140% 140%;
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dark Mode Glass Overrides */
+body.dark-mode {
+  --bg-gradient: linear-gradient(135deg, #0E1627 0%, #2A1D2B 35%, #56162B 70%, #0E1627 100%);
+  --bg-glass-card: rgba(27, 34, 54, 0.65);
+  --bg-glass-border: rgba(218, 131, 147, 0.28);
+  --bg-glass-subtle: rgba(27, 34, 54, 0.45);
+  --text-primary: #FFF5E4;
+  --text-muted: #E5C5C1;
+  --accent-primary: #FFC4C4;
+  --accent-secondary: #EE6983;
+}
+
+/* Animated Ambient Floating Blobs */
+.glass-blobs-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: floatBlobs 18s ease-in-out infinite alternate;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: #FFC4C4;
+  top: 10%;
+  left: 5%;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #EE6983;
+  bottom: 20%;
+  right: 5%;
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 350px;
+  height: 350px;
+  background: #850E35;
+  top: 50%;
+  left: 45%;
+  opacity: 0.35;
+  animation-duration: 16s;
+  animation-delay: -9s;
+}
+
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
+  100% { transform: translate(-40px, 50px) scale(0.95); }
+}
+
+/* Ensure content sits above blobs */
+header, section, footer, .model-switch-bar {
+  position: relative;
+  z-index: 1;
+}
+
+/* Frosted Glass Navbar */
+.nav-sticky {
+  background: rgba(255, 245, 228, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-bottom: 1px solid var(--bg-glass-border) !important;
+  box-shadow: 0 4px 20px rgba(133, 14, 53, 0.08) !important;
+}
+
+body.dark-mode .nav-sticky {
+  background: rgba(14, 22, 39, 0.75) !important;
+}
+
+/* Frosted Glass Cards */
+.audio-card, .glass-panel, .stat-card {
+  background: var(--bg-glass-card) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+  border: 1px solid var(--bg-glass-border) !important;
+  border-radius: var(--radius-glass) !important;
+  box-shadow: 0 16px 36px rgba(133, 14, 53, 0.10) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.audio-card:hover, .glass-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(133, 14, 53, 0.16) !important;
+}
+
+/* Hero Soft Glass */
+.hero-glass {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 48px;
+  padding: 50px 0 70px;
+}
+
+.glass-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(133, 14, 53, 0.08);
+}
+
+.hero-title-glass {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--accent-primary);
+  margin-bottom: 12px;
+}
+
+.hero-tagline-glass {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.hero-art-glass-card {
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 32px;
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(133, 14, 53, 0.14);
+  text-align: center;
+}
+
+.hero-art-glass-img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+}
+
+/* Glass Pill Buttons */
+.pill-btn, .play-btn {
+  border-radius: 9999px !important;
+  box-shadow: 0 6px 18px rgba(133, 14, 53, 0.2) !important;
+}
+
+/* Glass Accordions */
+.accordion {
+  background: var(--bg-glass-card) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid var(--bg-glass-border) !important;
+  border-radius: 16px !important;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .hero-glass {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-title-glass {
+    font-size: 2.5rem;
+  }
+  .glass-badge {
+    margin: 0 auto 16px;
+  }
+}

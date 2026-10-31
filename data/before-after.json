@@ -1,0 +1,38 @@
+{
+  "title": "Before vs After",
+  "subtitle": "Raw Course Notes vs Conversational Audio",
+  "comparisons": [
+    {
+      "topic": "Gradient Descent & Backpropagation",
+      "before": {
+        "format": "Raw Course Lecture Slide #14",
+        "content": "Given objective function L(theta) parameterized by weights theta in R^d, gradient descent iteratively computes theta_{t+1} = theta_t - eta * grad_theta L(theta_t). In multi-layer perceptrons, the chain rule of partial differentiation is evaluated recursively from output layer L back to input layer 1 to calculate del L / del w_{ij}^{(l)} = delta_j^{(l)} * a_i^{(l-1)} where delta represents error terms."
+      },
+      "after": {
+        "format": "Synthesized Podcast Dialogue (Host A & Host B)",
+        "dialogue": [
+          { "speaker": "Host A", "text": "Okay, look at this slide. It's a wall of Greek letters—thetas, etas, deltas. What is it actually doing?" },
+          { "speaker": "Host B", "text": "Picture yourself blindfolded on a foggy hill at night. You want to get to the valley bottom. How do you walk?" },
+          { "speaker": "Host A", "text": "You feel with your foot for whatever direction slopes downward most steeply." },
+          { "speaker": "Host B", "text": "That's gradient descent! And the chain rule? That's just working backward to see which step threw you off balance." }
+        ]
+      }
+    },
+    {
+      "topic": "Consensus & Leader Election in Raft",
+      "before": {
+        "format": "Distributed Systems Textbook p. 112",
+        "content": "A server remains in follower state as long as it receives valid RPCs from a leader or candidate. Leaders send periodic heartbeats (AppendEntries RPCs that carry no log entries) to all followers in order to maintain their authority. If a follower receives no communication over electionTimeout, it assumes there is no viable leader and initiates an election by transitioning to candidate state."
+      },
+      "after": {
+        "format": "Synthesized Podcast Dialogue (Host A & Host B)",
+        "dialogue": [
+          { "speaker": "Host A", "text": "So in a cluster, how does everyone know the leader hasn't crashed?" },
+          { "speaker": "Host B", "text": "The leader literally has to tap every server on the shoulder every 50 milliseconds saying: 'Still here! Still here!'" },
+          { "speaker": "Host A", "text": "And if it misses a tap?" },
+          { "speaker": "Host B", "text": "The closest server immediately raises its hand and shouts: 'I'm running for election!'" }
+        ]
+      }
+    }
+  ]
+}

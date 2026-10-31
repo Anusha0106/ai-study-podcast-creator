@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <defs>
+      <linearGradient id="vidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0E1627"/>
+        <stop offset="45%" stop-color="#850E35"/>
+        <stop offset="85%" stop-color="#BD8E89"/>
+        <stop offset="100%" stop-color="#FFF5E4"/>
+      </linearGradient>
+    </defs>
+    <rect width="1280" height="720" rx="24" fill="url(#vidGrad)"/>
+    
+    <!-- Audio Waveform decorative bars across middle -->
+    <g opacity="0.25" fill="#FFF5E4" transform="translate(140, 360)">
+      <rect x="0" y="-10" width="12" height="20" rx="6"/>
+<rect x="25" y="-31.682550269259515" width="12" height="63.36510053851903" rx="6"/>
+<rect x="50" y="-51.52068272698568" width="12" height="103.04136545397137" rx="6"/>
+<rect x="75" y="-37.96117257901679" width="12" height="75.92234515803358" rx="6"/>
+<rect x="100" y="-49.98720809124515" width="12" height="99.9744161824903" rx="6"/>
+<rect x="125" y="-57.27892280477045" width="12" height="114.5578456095409" rx="6"/>
+<rect x="150" y="-30.263895416534517" width="12" height="60.527790833069034" rx="6"/>
+<rect x="175" y="-30.04964450467714" width="12" height="60.09928900935428" rx="6"/>
+<rect x="200" y="-28.248775697172597" width="12" height="56.497551394345194" rx="6"/>
+<rect x="225" y="3.275613298845574" width="12" height="-6.551226597691148" rx="6"/>
+<rect x="250" y="2.7040748592378456" width="12" height="-5.408149718475691" rx="6"/>
+<rect x="275" y="-1.4519377833145164" width="12" height="2.903875566629033" rx="6"/>
+<rect x="300" y="19.884938265075217" width="12" height="-39.769876530150434" rx="6"/>
+<rect x="325" y="6.503639671604596" width="12" height="-13.007279343209191" rx="6"/>
+<rect x="350" y="-11.062000863830374" width="12" height="22.124001727660747" rx="6"/>
+<rect x="375" y="-1.6175350540322242" width="12" height="3.2350701080644484" rx="6"/>
+<rect x="400" y="-23.49647614551481" width="12" height="46.99295229102962" rx="6"/>
+<rect x="425" y="-44.82340053415827" width="12" height="89.64680106831653" rx="6"/>
+<rect x="450" y="-33.8100359154746" width="12" height="67.6200718309492" rx="6"/>
+<rect x="475" y="-49.037590160944596" width="12" height="98.07518032188919" rx="6"/>
+<rect x="500" y="-59.680747398701456" width="12" height="119.36149479740291" rx="6"/>
+<rect x="525" y="-35.637967242648415" width="12" height="71.27593448529683" rx="6"/>
+<rect x="550" y="-37.547515786752854" width="12" height="75.09503157350571" rx="6"/>
+<rect x="575" y="-36.686697423007374" width="12" height="73.37339484601475" rx="6"/>
+<rect x="600" y="-4.770196563310558" width="12" height="9.540393126621115" rx="6"/>
+<rect x="625" y="-3.6793666733189063" width="12" height="7.358733346637813" rx="6"/>
+<rect x="650" y="-5.165205927430389" width="12" height="10.330411854860778" rx="6"/>
+<rect x="675" y="19.428086901994746" width="12" height="-38.85617380398949" rx="6"/>
+<rect x="700" y="9.375331874539508" width="12" height="-18.750663749079017" rx="6"/>
+<rect x="725" y="-5.315142150938769" width="12" height="10.630284301877538" rx="6"/>
+<rect x="750" y="6.097187540013049" width="12" height="-12.194375080026099" rx="6"/>
+<rect x="775" y="-15.031874736550717" width="12" height="30.063749473101435" rx="6"/>
+<rect x="800" y="-36.94529475304617" width="12" height="73.89058950609234" rx="6"/>
+<rect x="825" y="-27.762205441216736" width="12" height="55.52441088243347" rx="6"/>
+<rect x="850" y="-45.7748544456949" width="12" height="91.5497088913898" rx="6"/>
+<rect x="875" y="-59.71822067084611" width="12" height="119.43644134169222" rx="6"/>
+<rect x="900" y="-38.969733296478324" width="12" height="77.93946659295665" rx="6"/>
+<rect x="925" y="-43.64756202125949" width="12" height="87.29512404251898" rx="6"/>
+<rect x="950" y="-44.59196066561394" width="12" height="89.18392133122788" rx="6"/>
+<rect x="975" y="-13.23260956898327" width="12" height="26.46521913796654" rx="6"/>
+    </g>
+
+    <!-- Play button overlay -->
+    <circle cx="640" cy="360" r="64" fill="#850E35" stroke="#FFF5E4" stroke-width="4"/>
+    <polygon points="630,335 665,360 630,385" fill="#FFF5E4"/>
+
+    <!-- Labels -->
+    <text x="640" y="470" fill="#FFF5E4" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" text-anchor="middle">
+      Capstone Final Demo Walkthrough
+    </text>
+    <text x="640" y="510" fill="#F4E1E0" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" text-anchor="middle" opacity="0.9">
+      From Raw Course Syllabus to Verified Audio Learning in 4 Steps (03:42)
+    </text>
+  </svg>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "p-1",
+    "tool": "ChatGPT",
+    "role": "Scriptwriting",
+    "bestVersion": true,
+    "title": "Two-Speaker Conversational Socratic Dialogue",
+    "shortDesc": "Converts technical textbook prose into natural, punchy peer banter.",
+    "prompt": "You are writing a podcast script for two college computer science students (Host A: curious skeptic, Host B: patient visual thinker). Convert the following lecture notes into a 2-minute dialogue. Rules:\n1. Use conversational interruptions, analogies, and everyday metaphors.\n2. Ban corporate buzzwords.\n3. Keep dialogue turns under 25 words.\n4. End with a crisp takeaway summary.\nNotes: [PASTE YOUR RAW COURSE NOTES HERE - REPLACE ME]",
+    "outputExcerpt": "Host A: Wait, so backprop isn't magic, it's just chain rule on repeat?\nHost B: Exactly! Think of it like tuning guitar strings until the dissonance disappears."
+  },
+  {
+    "id": "p-2",
+    "tool": "NotebookLM",
+    "role": "Audio Overview",
+    "bestVersion": true,
+    "title": "Source Grounding & Deep Dive Prompt",
+    "shortDesc": "Forces audio overviews to anchor strictly to uploaded PDFs without inventing facts.",
+    "prompt": "Generate a focused Audio Overview covering only the mathematical formulation of gradient descent from Sections 3.1 to 3.4 of the uploaded syllabus. Explicitly avoid speculative examples not found in the source text. (REPLACE ME)",
+    "outputExcerpt": "NotebookLM synthesized 42 pages into a 14-minute audio overview with zero out-of-syllabus hallucinated theorems."
+  },
+  {
+    "id": "p-3",
+    "tool": "ElevenLabs",
+    "role": "Voice Generation",
+    "bestVersion": false,
+    "title": "Free Tier Voice Calibration & SSML Pacing",
+    "shortDesc": "Settings for natural collegiate vocal inflections and breathing pauses.",
+    "prompt": "Voice 1 (Rachel): Stability: 0.42, Similarity Boost: 0.85, Style Exaggeration: 0.15\nVoice 2 (Adam): Stability: 0.48, Similarity Boost: 0.78, Style Exaggeration: 0.20\nInsert <break time=\"350ms\"/> between speaker transitions to eliminate artificial clipping. (REPLACE ME)",
+    "outputExcerpt": "Produced studio-quality banter on ElevenLabs free tier with zero robotic cadence or overlap."
+  },
+  {
+    "id": "p-4",
+    "tool": "Leonardo AI",
+    "role": "Cover Art",
+    "bestVersion": true,
+    "title": "Palette-Aligned Editorial Album Art",
+    "shortDesc": "Generates minimal vector album covers adhering strictly to rose, burgundy, and cream tones.",
+    "prompt": "Minimalist vector illustration of soundwaves merging with neural network nodes, elegant duotone palette of burgundy #850E35, soft rose #EE6983, and warm cream #FFF5E4, studio podcast art, clean lines, bauhaus geometry, 8k resolution, flat graphic design --no neon --no blue (REPLACE ME)",
+    "outputExcerpt": "Created 3 distinct square album artworks matching the project's exact hex color guidelines."
+  },
+  {
+    "id": "p-5",
+    "tool": "ChatGPT",
+    "role": "Fact-Checking",
+    "bestVersion": true,
+    "title": "Hallucination Cross-Verification Protocol",
+    "shortDesc": "Audits generated scripts line-by-line against primary course lecture slides.",
+    "prompt": "Act as an academic peer reviewer. Compare this generated script against the primary course textbook chapter provided. Flag any statement that introduces external claims, exaggerations, or factually ambiguous analogies. Output a 3-column table: [Script Claim] | [Source Verification] | [Verdict: Pass/Fail]. (REPLACE ME)",
+    "outputExcerpt": "Caught 2 subtle timing inaccuracies in the Raft consensus timeout description before audio synthesis."
+  }
+]

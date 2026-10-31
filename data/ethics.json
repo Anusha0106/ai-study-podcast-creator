@@ -1,0 +1,32 @@
+{
+  "disclosure": {
+    "title": "Academic AI Disclosure",
+    "summary": "This capstone leverages generative AI as an assistive pipeline under rigorous human review. All claims are cross-checked against accredited university course syllabi."
+  },
+  "cards": [
+    {
+      "id": "privacy",
+      "title": "Data Privacy",
+      "summary": "Zero personal or student data uploaded to cloud models.",
+      "details": "Only public, anonymized lecture topic outlines and open-access educational notes were processed. No student identifying data, grades, or proprietary institutional assets were submitted to external API endpoints. Google Forms survey responses were completely anonymized at the source."
+    },
+    {
+      "id": "copyright",
+      "title": "Copyright & Fair Use",
+      "summary": "Educational synthesis compliant with fair-use doctrines.",
+      "details": "Outputs are transformative audio adaptations designed purely for non-commercial student study assistance. Primary source materials are cited in episode metadata, avoiding verbatim reproductions and maintaining clear educational attribution."
+    },
+    {
+      "id": "honesty",
+      "title": "Academic Honesty",
+      "summary": "Explicit synthetic voice disclosure in every episode header.",
+      "details": "All audio files include an upfront audible watermark and intro stating: 'This episode is an AI-synthesized study overview generated for capstone research.' Neither listeners nor survey evaluators were misled about the non-human origin of the voices."
+    },
+    {
+      "id": "limits",
+      "title": "Model Limitations",
+      "summary": "Supplementary study aid, not a textbook replacement.",
+      "details": "Synthetic audio conversations prioritize intuition and retention over exhaustive technical rigor. Complex mathematical proofs must still be verified with primary textbook readings. Users are cautioned against treating generated dialogues as infallible ground truth."
+    }
+  ]
+}

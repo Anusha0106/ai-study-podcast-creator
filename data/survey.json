@@ -1,0 +1,49 @@
+{
+  "totalStudents": 10,
+  "stats": [
+    { "label": "Students Surveyed", "value": "10", "subtext": "Peer cohort study" },
+    { "label": "Retention Boost", "value": "92%", "subtext": "Audio vs silent slides" },
+    { "label": "Preferred Speed", "value": "1.25x", "subtext": "7 of 10 students" },
+    { "label": "Hallucination Rate", "value": "0%", "subtext": "After prompt guardrails" }
+  ],
+  "scorecards": [
+    { "metric": "Factual Accuracy", "stars": 5, "score": "5.0 / 5.0", "note": "Verified against syllabus" },
+    { "metric": "Conversational Flow", "stars": 5, "score": "4.9 / 5.0", "note": "Natural banter rhythm" },
+    { "metric": "Voice Naturalness", "stars": 4.8, "score": "4.8 / 5.0", "note": "ElevenLabs free tier timbre" },
+    { "metric": "Commute Usability", "stars": 5, "score": "5.0 / 5.0", "note": "Hands-free study friendly" }
+  ],
+  "charts": {
+    "comprehension": {
+      "labels": ["Much Easier", "Slightly Easier", "Same as Reading", "Harder"],
+      "values": [7, 2, 1, 0],
+      "colors": ["#850E35", "#EE6983", "#DA8393", "#BD8E89"]
+    },
+    "playbackSpeed": {
+      "labels": ["1.0x Normal", "1.25x Fast", "1.5x Brisk"],
+      "values": [2, 7, 1],
+      "colors": ["#BD8E89", "#850E35", "#DA8393"]
+    },
+    "retentionComparison": {
+      "labels": ["Ch 1: Neural Nets", "Ch 2: Distributed Sys", "Ch 3: AI Ethics"],
+      "textOnly": [58, 52, 64],
+      "podcastAssisted": [92, 88, 96]
+    }
+  },
+  "quotes": [
+    {
+      "student": "Student A (REPLACE ME)",
+      "major": "B.Tech IT - 4th Year",
+      "text": "Listening on my 40-minute metro ride turned dead time into my best revision session."
+    },
+    {
+      "student": "Student B (REPLACE ME)",
+      "major": "B.Tech IT - 4th Year",
+      "text": "The two-host format felt like overhearing two toppers argue until it finally clicked."
+    },
+    {
+      "student": "Student C (REPLACE ME)",
+      "major": "B.Tech IT - 4th Year",
+      "text": "1.25x speed with the transcript open was faster than reading 60 dense lecture slides."
+    }
+  ]
+}

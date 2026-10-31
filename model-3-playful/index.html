@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Podcast Creator — Playful Studio Edition</title>
+  <link rel="stylesheet" href="/assets/css/common.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Universal Model Switcher Pill Bar -->
+  <nav class="model-switch-bar" aria-label="Model switcher">
+    <a href="/" title="Preview Hub">Hub</a>
+    <a href="/model-1-editorial" title="Editorial Magazine">M1: Editorial</a>
+    <a href="/model-2-soft-glass" title="Soft Glass Translucent">M2: Soft Glass</a>
+    <a href="/model-3-playful" class="active" title="Playful Studio">M3: Playful</a>
+    <button id="theme-toggle-btn" class="dark-toggle-btn" aria-label="Toggle theme">🌙</button>
+  </nav>
+
+  <!-- Sticky Minimal Navbar -->
+  <header class="nav-sticky">
+    <div class="nav-container">
+      <a href="#listen" class="nav-brand">
+        <span class="brand-icon" style="background: linear-gradient(135deg, #EE6983, #DA8393);">🎧</span>
+        <span>AI Study Podcast</span>
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle Navigation">☰</button>
+      <ul class="nav-links">
+        <li><a href="#listen" class="nav-link active">Listen</a></li>
+        <li><a href="#results" class="nav-link">Results</a></li>
+        <li><a href="#process" class="nav-link">Process</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==================== 1. LISTEN ==================== -->
+  <section id="listen" style="padding-top: 30px;">
+    <div class="container">
+      
+      <!-- Hero -->
+      <div class="hero-playful">
+        <div>
+          <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+            <span class="sticker-badge">🎓 Capstone Project</span>
+            <span class="sticker-badge sticker-alt">✨ GenAI Audio</span>
+          </div>
+
+          <h1 style="font-size: 3.3rem; line-height: 1.1; margin-bottom: 12px; color: var(--accent-secondary);">
+            AI Study Podcast Creator
+          </h1>
+          <p style="font-size: 1.35rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 18px;">
+            “Notes, but make them listenable.”
+          </p>
+          <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6;">
+            Turn dry lectures into snappy audio episodes you can actually finish while getting coffee.
+          </p>
+
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <button class="play-btn" onclick="triggerHeroPlay()" style="width: 56px; height: 56px; font-size: 1.3rem; background: var(--accent-primary);" aria-label="Start listening">
+              ▶
+            </button>
+            <div>
+              <div style="font-size: 0.95rem; font-weight: 800; color: var(--accent-secondary);">Play Episode 01</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Neural Nets &amp; Backpropagation (14:28)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Big Hero Illustration with Decorative Palette Circles -->
+        <div class="hero-art-stage">
+          <div class="decorative-circles" aria-hidden="true">
+            <div class="circle-ring circle-ring-1"></div>
+            <div class="circle-ring circle-ring-2"></div>
+            <div class="circle-ring circle-ring-3"></div>
+          </div>
+          <img src="/assets/images/podcast-hero-recoloured.png" alt="Podcast Student with Headphones and Mic" class="hero-playful-img" />
+        </div>
+      </div>
+
+      <!-- Chapter Audio Cards -->
+      <div class="section-header" style="margin-top: 70px;">
+        <span class="sticker-badge" style="margin-bottom: 8px;">EPISODES</span>
+        <h2 class="section-title">Course Chapters</h2>
+        <p class="section-desc">Interactive players with speed control and full dialogue transcripts.</p>
+      </div>
+
+      <div id="chapters-container" style="display: flex; flex-direction: column; gap: 24px; max-width: 900px; margin: 0 auto;"></div>
+
+      <!-- ElevenLabs Two-Speaker Card -->
+      <div class="section-header" style="margin-top: 70px;">
+        <span class="sticker-badge sticker-alt" style="margin-bottom: 8px;">STUDIO BANTER</span>
+        <h2 class="section-title">Two-Speaker Banter</h2>
+        <p class="section-desc">Auditing ElevenLabs free-tier speaker chemistry and pacing.</p>
+      </div>
+
+      <div class="audio-card" style="max-width: 900px; margin: 0 auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span class="badge-tag" style="background: var(--c-soft-pink); color: var(--c-burgundy);">ELEVENLABS DUO</span>
+            <h3 style="font-size: 1.25rem; color: var(--accent-secondary); margin-top: 4px;">Rachel &amp; Adam Discussion</h3>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">0:28 Sample</span>
+        </div>
+
+        <audio id="audio-elevenlabs" src="/assets/audio/elevenlabs-two-speaker.wav" preload="metadata"></audio>
+        
+        <div class="player-controls">
+          <button class="play-btn" id="play-elevenlabs" onclick="toggleAudio('elevenlabs')" style="background: var(--accent-primary);" aria-label="Play dialogue">
+            <span class="play-icon">▶</span>
+          </button>
+          <div class="scrubber-wrap">
+            <input type="range" class="scrubber" id="scrub-elevenlabs" value="0" min="0" max="100" step="0.1" oninput="seekAudio('elevenlabs', this.value)" aria-label="Seek track" />
+            <div class="time-row">
+              <span id="curr-elevenlabs">0:00</span>
+              <span id="dur-elevenlabs">0:28</span>
+            </div>
+          </div>
+          <div class="speed-group">
+            <button class="speed-btn active" onclick="setSpeed('elevenlabs', 1.0, this)">1x</button>
+            <button class="speed-btn" onclick="setSpeed('elevenlabs', 1.25, this)">1.25x</button>
+          </div>
+        </div>
+
+        <!-- Read Transcript Accordion -->
+        <div class="accordion" id="acc-elevenlabs" style="margin-top: 18px;">
+          <button class="accordion-trigger" onclick="toggleAccordion('acc-elevenlabs')">
+            <span>Read full transcript</span>
+            <span class="accordion-icon">▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="dialogue-thread">
+              <div class="chat-bubble host-a">
+                <span class="bubble-sender">Host A (Rachel)</span>
+                "When you first look at Paxos, it feels impossible. Everyone has a different proposal number."
+              </div>
+              <div class="chat-bubble host-b">
+                <span class="bubble-sender">Host B (Adam)</span>
+                "Right! But Raft fixed that by separating log replication from leader election. You just elect one boss."
+              </div>
+              <div class="chat-bubble host-a">
+                <span class="bubble-sender">Host A (Rachel)</span>
+                "And as long as the majority node answers, your cluster never loses state."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cover Art Gallery -->
+      <div class="section-header" style="margin-top: 70px;">
+        <span class="sticker-badge" style="margin-bottom: 8px;">GALLERY</span>
+        <h2 class="section-title">Cover Art Lightbox</h2>
+        <p class="section-desc">Palette-aligned cover artwork generated with Leonardo AI and Canva.</p>
+      </div>
+
+      <div class="gallery-grid" id="gallery-container"></div>
+
+      <!-- "Try It" Gemini Panel -->
+      <div class="section-header" style="margin-top: 70px;">
+        <span class="sticker-badge sticker-alt" style="margin-bottom: 8px;">TRY IT LIVE</span>
+        <h2 class="section-title">Make My Podcast</h2>
+        <p class="section-desc">Paste notes to generate a two-speaker script and audit for hallucinations.</p>
+      </div>
+
+      <div class="playful-card" style="padding: 32px; max-width: 900px; margin: 0 auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <label for="gemini-notes-input" style="font-weight: 800; color: var(--accent-secondary); font-size: 0.95rem;">
+            Course Notes Excerpt
+          </label>
+          <button type="button" onclick="fillSampleNotes()" style="background: var(--c-soft-pink); border: 1px solid var(--accent-primary); color: var(--accent-secondary); padding: 4px 14px; border-radius: 9999px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+            ⚡ Insert sample notes
+          </button>
+        </div>
+
+        <textarea id="gemini-notes-input" rows="4" style="width: 100%; border: 2px solid var(--c-pink); border-radius: 16px; padding: 14px; font-family: var(--font-body); font-size: 0.9rem; background: #FFF5E4; color: var(--text-primary); resize: vertical;" placeholder="Paste lecture notes here..."></textarea>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap; gap: 10px;">
+          <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Powered by official Google Gen AI SDK</span>
+          <div style="display: flex; gap: 10px;">
+            <button id="gemini-generate-btn" onclick="generatePodcastScript()" style="background: var(--accent-primary); color: #FFF5E4; border: none; padding: 10px 22px; border-radius: 9999px; font-weight: 800; font-size: 0.9rem; cursor: pointer;">
+              ✨ Make my podcast
+            </button>
+            <button id="gemini-factcheck-btn" onclick="runFactCheck()" style="display: none; background: transparent; border: 2px solid var(--accent-primary); color: var(--accent-primary); padding: 8px 18px; border-radius: 9999px; font-weight: 800; font-size: 0.88rem; cursor: pointer;">
+              🔍 Fact-check
+            </button>
+          </div>
+        </div>
+
+        <div id="gemini-error-box" style="display: none; margin-top: 16px; padding: 12px 16px; background: rgba(133, 14, 53, 0.1); border: 2px solid var(--accent-secondary); border-radius: 12px; font-size: 0.85rem; color: var(--accent-secondary);"></div>
+
+        <div id="gemini-results-wrap" style="display: none; margin-top: 24px; border-top: 2px dashed var(--c-pink); padding-top: 20px;">
+          <div id="gemini-script-content"></div>
+          <div id="gemini-factcheck-result" style="display: none;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 2. RESULTS ==================== -->
+  <section id="results">
+    <div class="container">
+      <div class="section-header">
+        <span class="sticker-badge" style="margin-bottom: 8px;">METRICS</span>
+        <h2 class="section-title">Cohort Results</h2>
+        <p class="section-desc">10-student cohort study measuring comprehension and recall.</p>
+      </div>
+
+      <!-- Stat Tiles -->
+      <div id="stat-tiles-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-bottom: 40px;"></div>
+
+      <!-- Charts & Star Scorecards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
+        <div class="playful-card" style="padding: 24px;">
+          <h3 style="font-size: 1.15rem; color: var(--accent-secondary); margin-bottom: 4px;">Comprehension Shift</h3>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 16px;">Student perceived ease of understanding</p>
+          <canvas id="chart-comprehension" height="220"></canvas>
+        </div>
+
+        <div class="playful-card" style="padding: 24px;">
+          <h3 style="font-size: 1.15rem; color: var(--accent-secondary); margin-bottom: 4px;">Concept Retention</h3>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 16px;">Recall test: Slide reading vs Podcast overview</p>
+          <canvas id="chart-retention" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Scorecards -->
+      <div style="margin-bottom: 40px;">
+        <h3 style="font-size: 1.25rem; color: var(--accent-secondary); margin-bottom: 16px; text-align: center;">Quality Scorecards</h3>
+        <div id="scorecards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;"></div>
+      </div>
+
+      <!-- Before / After -->
+      <div id="before-after-container" style="margin-bottom: 32px;"></div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <button onclick="openVerificationModal()" style="background: var(--accent-secondary); color: #FFF5E4; border: none; padding: 12px 28px; border-radius: 9999px; font-weight: 800; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 14px rgba(133, 14, 53, 0.25);">
+          📋 See verification log
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. PROCESS ==================== -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="sticker-badge sticker-alt" style="margin-bottom: 8px;">HOW IT'S MADE</span>
+        <h2 class="section-title">Production Workflow</h2>
+        <p class="section-desc">From raw lecture syllabus to audited studio audio.</p>
+      </div>
+
+      <!-- Workflow Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: 12px; margin: 32px 0;">
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 01</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">📄</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">Notes</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 02</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">🤖</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">NotebookLM</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 03</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">🔎</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">Evaluate</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 04</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">💬</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">ChatGPT</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 05</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">🎙️</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">ElevenLabs</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 06</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">🎨</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">Cover Art</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 07</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">📊</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">Survey</div>
+        </div>
+        <div class="workflow-step-playful">
+          <span style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary);">STEP 08</span>
+          <div style="font-size: 1.3rem; margin: 4px 0;">✅</div>
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-secondary);">Verify</div>
+        </div>
+      </div>
+
+      <!-- Prompts Grid -->
+      <div style="margin-top: 60px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <span class="sticker-badge" style="margin-bottom: 6px;">PROMPTS</span>
+            <h3 style="font-size: 1.4rem; color: var(--accent-secondary); margin-top: 4px;">Prompt Library</h3>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="filter-chip active" data-tool="All" onclick="filterPrompts('All')">All</button>
+            <button class="filter-chip" data-tool="NotebookLM" onclick="filterPrompts('NotebookLM')">NotebookLM</button>
+            <button class="filter-chip" data-tool="ChatGPT" onclick="filterPrompts('ChatGPT')">ChatGPT</button>
+            <button class="filter-chip" data-tool="ElevenLabs" onclick="filterPrompts('ElevenLabs')">ElevenLabs</button>
+            <button class="filter-chip" data-tool="Leonardo AI" onclick="filterPrompts('Leonardo AI')">Leonardo AI</button>
+          </div>
+        </div>
+
+        <div id="prompts-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. ABOUT ==================== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="sticker-badge" style="margin-bottom: 8px;">STANDARDS</span>
+        <h2 class="section-title">Ethics &amp; Transparency</h2>
+        <p class="section-desc">Responsible AI boundaries and student academic disclosures.</p>
+      </div>
+
+      <!-- Disclosure Banner -->
+      <div class="playful-card" style="border-left: 6px solid var(--accent-primary) !important; padding: 22px; max-width: 860px; margin: 0 auto 32px;">
+        <strong style="color: var(--accent-secondary); font-size: 1.05rem;">Academic AI Disclosure</strong>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px; line-height: 1.55;">
+          This capstone project utilizes generative AI strictly as an assistive synthesis tool under human supervision. All audio scripts were audited against primary course materials to eliminate hallucinations.
+        </p>
+      </div>
+
+      <!-- Ethics Accordions -->
+      <div id="ethics-container" style="max-width: 860px; margin: 0 auto 48px;"></div>
+
+      <!-- Demo Video -->
+      <div class="section-header">
+        <span class="sticker-badge sticker-alt" style="margin-bottom: 8px;">VIDEO TOUR</span>
+        <h3 class="section-title">Walkthrough Video</h3>
+        <p class="section-desc">Four-minute capstone demonstration from notes to audio publication.</p>
+      </div>
+
+      <div class="playful-card" style="max-width: 860px; margin: 0 auto; padding: 12px; overflow: hidden;">
+        <img src="/assets/images/video-preview.svg" alt="Capstone Final Demo Walkthrough Thumbnail" style="width: 100%; border-radius: 16px; display: block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div style="font-size: 1.1rem; font-weight: 700; color: var(--c-cream);">AI Study Podcast Creator</div>
+      <div style="font-size: 0.85rem; color: var(--c-pink);">
+        College Capstone Project • B.Tech Information Technology
+      </div>
+      <div class="tools-pill-group">
+        <span class="tool-pill">NotebookLM</span>
+        <span class="tool-pill">ChatGPT-4o</span>
+        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Gemini 3.8 Flash</span>
+        <span class="tool-pill">Leonardo AI</span>
+        <span class="tool-pill">Canva</span>
+        <span class="tool-pill">Chart.js</span>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--c-mauve); margin-top: 8px;">
+        Playful Creative Studio Design • Extracted Palette: Rose #EE6983, Rose Gold #DA8393, Burgundy #850E35, Cream #FFF5E4.
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/shared-app.js"></script>
+</body>
+</html>

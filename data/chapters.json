@@ -1,0 +1,53 @@
+[
+  {
+    "id": "ch-1",
+    "number": "01",
+    "title": "Neural Networks",
+    "subtitle": "Gradient Descent & Backprop",
+    "duration": "14:28",
+    "audioSrc": "/assets/audio/chapter-1-sample.wav",
+    "coverArt": "/assets/images/cover-art-1.svg",
+    "summary": "Complex calculus and matrix operations distilled into an engaging morning commute conversation. (REPLACE ME)",
+    "tool": "NotebookLM Deep Dive",
+    "tags": ["Machine Learning", "Backpropagation", "Audio Overview"],
+    "keyTakeaway": "Loss landscapes are like foggy hills; gradient descent is stepping downhill.",
+    "scriptExcerpt": [
+      { "speaker": "Host A", "text": "Wait, so backpropagation isn't magic, it's just chain rule on repeat?" },
+      { "speaker": "Host B", "text": "Exactly. Think of it like a sound mixer adjusting each slider backward until the noise stops." }
+    ]
+  },
+  {
+    "id": "ch-2",
+    "number": "02",
+    "title": "Distributed Consensus",
+    "subtitle": "Paxos vs Raft Leader Election",
+    "duration": "18:04",
+    "audioSrc": "/assets/audio/chapter-2-sample.wav",
+    "coverArt": "/assets/images/cover-art-2.svg",
+    "summary": "Split-brain syndromes and quorum elections explained through a high-stakes team dinner metaphor. (REPLACE ME)",
+    "tool": "ChatGPT Script + ElevenLabs",
+    "tags": ["Systems", "Raft", "Consensus"],
+    "keyTakeaway": "You only need majority consensus: 2 out of 3 servers agree, the cluster moves forward.",
+    "scriptExcerpt": [
+      { "speaker": "Host A", "text": "So if the leader goes silent for 150 milliseconds, everyone panics?" },
+      { "speaker": "Host B", "text": "They don't panic—they hold an election. The first server to collect the votes wins." }
+    ]
+  },
+  {
+    "id": "ch-3",
+    "number": "03",
+    "title": "AI Ethics & Alignment",
+    "subtitle": "Hallucinations & Grounding",
+    "duration": "12:51",
+    "audioSrc": "/assets/audio/chapter-3-sample.wav",
+    "coverArt": "/assets/images/cover-art-3.svg",
+    "summary": "Exploring why generative models invent citations and how strict grounding prevents fabrication. (REPLACE ME)",
+    "tool": "NotebookLM + Manual Verification",
+    "tags": ["Ethics", "Hallucination Testing", "Grounding"],
+    "keyTakeaway": "Audio overviews sound confident even when wrong. Grounding checks are non-negotiable.",
+    "scriptExcerpt": [
+      { "speaker": "Host A", "text": "The hardest part of AI podcasts is that the voices sound so confident." },
+      { "speaker": "Host B", "text": "Which is exactly why we built a verification protocol before publishing." }
+    ]
+  }
+]

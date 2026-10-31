@@ -1,0 +1,47 @@
+[
+  {
+    "id": "v-1",
+    "chapter": "01 Neural Networks",
+    "generatedClaim": "Backpropagation computes the Hessian matrix on each forward pass to accelerate gradient steps.",
+    "sourceFact": "Standard backprop computes first-order Jacobian gradients; second-order Hessian computation is computationally intractable for deep nets (Course Text p. 84).",
+    "status": "FLAGGED & REVISED",
+    "severity": "High",
+    "promptTweak": "Added negative constraint: 'Limit gradient calculus explanations strictly to first-order partial derivatives'."
+  },
+  {
+    "id": "v-2",
+    "chapter": "01 Neural Networks",
+    "generatedClaim": "Learning rate controls the step size along the negative gradient vector.",
+    "sourceFact": "Equation 3.12: W = W - eta * grad(L). Exact alignment with lecture notes.",
+    "status": "VERIFIED",
+    "severity": "None",
+    "promptTweak": "Source grounding maintained without changes."
+  },
+  {
+    "id": "v-3",
+    "chapter": "02 Distributed Systems",
+    "generatedClaim": "In Raft, if a follower times out after 10 milliseconds, it immediately broadcasts vote requests.",
+    "sourceFact": "Raft uses randomized election timeouts between 150ms and 300ms to prevent split votes (Ongaro & Ousterhout paper).",
+    "status": "FLAGGED & REVISED",
+    "severity": "Medium",
+    "promptTweak": "Injected explicit parameter table from slides into system prompt before dialogue generation."
+  },
+  {
+    "id": "v-4",
+    "chapter": "02 Distributed Systems",
+    "generatedClaim": "Quorum in a 5-node cluster requires at least 3 active nodes to commit an entry.",
+    "sourceFact": "Quorum = floor(N/2) + 1. For N=5, quorum is 3 nodes.",
+    "status": "VERIFIED",
+    "severity": "None",
+    "promptTweak": "Exact match with textbook formulation."
+  },
+  {
+    "id": "v-5",
+    "chapter": "03 AI Ethics",
+    "generatedClaim": "NotebookLM synthesizes synthetic audio using closed proprietary watermarking models.",
+    "sourceFact": "Verified through official documentation and transparency disclosures.",
+    "status": "VERIFIED",
+    "severity": "None",
+    "promptTweak": "Disclosure included in episode show notes."
+  }
+]

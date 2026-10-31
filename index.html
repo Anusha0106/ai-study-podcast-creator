@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Podcast Creator — Capstone Design Showcase Hub</title>
+  <link rel="stylesheet" href="/assets/css/common.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #FFF5E4 0%, #F4E1E0 50%, #E5C5C1 100%);
+      min-height: 100vh;
+    }
+    .hub-header {
+      padding: 60px 0 30px;
+      text-align: center;
+    }
+    .hub-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #850E35;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hub-tagline {
+      font-size: 1.35rem;
+      color: #7F6269;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .model-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin: 40px 0;
+    }
+    .model-select-card {
+      background: #FFF5E4;
+      border-radius: 24px;
+      padding: 28px;
+      border: 2px solid rgba(189, 142, 137, 0.4);
+      box-shadow: 0 12px 30px rgba(133, 14, 53, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .model-select-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(133, 14, 53, 0.16);
+      border-color: #850E35;
+    }
+    .model-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      width: max-content;
+    }
+    .m1-badge { background: #850E35; color: #FFF5E4; }
+    .m2-badge { background: linear-gradient(135deg, #EE6983, #DA8393); color: #FFF5E4; }
+    .m3-badge { background: #DA8393; color: #0E1627; }
+    
+    .model-name {
+      font-size: 1.6rem;
+      color: #850E35;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .model-desc {
+      font-size: 0.92rem;
+      color: #5A4349;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .model-traits {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .model-traits li {
+      font-size: 0.85rem;
+      color: #0E1627;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .model-traits li::before {
+      content: '✔';
+      color: #EE6983;
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+    .launch-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      background: #850E35;
+      color: #FFF5E4;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(133, 14, 53, 0.25);
+    }
+    .launch-btn:hover {
+      background: #EE6983;
+      transform: scale(1.02);
+    }
+    /* Live Preview Iframe Frame */
+    .preview-section {
+      background: #FFF5E4;
+      border: 2px solid rgba(189, 142, 137, 0.4);
+      border-radius: 28px;
+      padding: 24px;
+      margin: 40px 0 60px;
+      box-shadow: 0 16px 40px rgba(133, 14, 53, 0.1);
+    }
+    .preview-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(189, 142, 137, 0.3);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .preview-iframe {
+      width: 100%;
+      height: 720px;
+      border: 1px solid rgba(189, 142, 137, 0.3);
+      border-radius: 16px;
+      background: #FFFFFF;
+      margin-top: 16px;
+      transition: width 0.3s ease;
+    }
+    .iframe-mobile {
+      max-width: 414px;
+      margin: 16px auto 0;
+      box-shadow: 0 12px 36px rgba(133, 14, 53, 0.2);
+    }
+    /* Palette Swatches */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .swatch-card {
+      background: #FFF5E4;
+      border: 1px solid rgba(189, 142, 137, 0.4);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(133, 14, 53, 0.05);
+      transition: transform 0.2s ease;
+    }
+    .swatch-card:hover {
+      transform: translateY(-3px);
+    }
+    .swatch-color {
+      height: 60px;
+      width: 100%;
+    }
+    .swatch-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0E1627;
+      margin-top: 6px;
+    }
+    .swatch-hex {
+      font-size: 0.72rem;
+      color: #7F6269;
+      font-family: monospace;
+      padding-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Universal Bar -->
+  <nav class="model-switch-bar">
+    <a href="/" class="active">Hub</a>
+    <a href="/model-1-editorial">M1: Editorial</a>
+    <a href="/model-2-soft-glass">M2: Soft Glass</a>
+    <a href="/model-3-playful">M3: Playful</a>
+    <button id="theme-toggle-btn" class="dark-toggle-btn" aria-label="Toggle theme">🌙</button>
+  </nav>
+
+  <div class="container">
+    
+    <!-- Hub Header -->
+    <header class="hub-header">
+      <span class="badge-tag" style="background: #850E35; color: #FFF5E4; font-size: 0.8rem; padding: 6px 14px; margin-bottom: 12px;">
+        College Capstone Project Showcase
+      </span>
+      <h1 class="hub-title">AI Study Podcast Creator</h1>
+      <p class="hub-tagline">“Notes, but make them listenable.”</p>
+      <p style="max-width: 680px; margin: 0 auto; color: #5A4349; font-size: 1.05rem; line-height: 1.6;">
+        Explore three distinct design models engineered from the same shared content architecture, custom audio players, Chart.js benchmarks, and Google Gemini API integration.
+      </p>
+    </header>
+
+    <!-- 3 Models Grid -->
+    <div class="model-cards-grid">
+      
+      <!-- Model 1 Card -->
+      <div class="model-select-card">
+        <div>
+          <span class="model-badge m1-badge">Model 01</span>
+          <h2 class="model-name">Editorial Magazine</h2>
+          <p class="model-desc">
+            Boutique-magazine elegance. Serif headings, generous whitespace, soft blush backgrounds, burgundy accents, and calm fade-in transitions.
+          </p>
+          <ul class="model-traits">
+            <li>Typography: Playfair Display + Plus Jakarta Sans</li>
+            <li>Background: Soft blush (#F4E1E0) &amp; Cream (#FFF5E4)</li>
+            <li>Dividers: Delicate burgundy-to-rose gradient lines</li>
+            <li>Pacing: Calm, contemplative reading &amp; listening</li>
+          </ul>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="/model-1-editorial" class="launch-btn" style="flex: 1;">Open Model 1 ↗</a>
+          <button onclick="setLivePreview('/model-1-editorial', 'Model 1: Editorial')" class="launch-btn" style="background: transparent; border: 1px solid #850E35; color: #850E35;">Preview</button>
+        </div>
+      </div>
+
+      <!-- Model 2 Card -->
+      <div class="model-select-card">
+        <div>
+          <span class="model-badge m2-badge">Model 02</span>
+          <h2 class="model-name">Soft Glass Translucent</h2>
+          <p class="model-desc">
+            Modern soft-glass feel. Frosted translucent cards with backdrop-filter blur over flowing burgundy-to-rose-to-cream gradients and floating blobs.
+          </p>
+          <ul class="model-traits">
+            <li>Glass: backdrop-filter: blur(18px) frosted cards</li>
+            <li>Background: Flowing burgundy &amp; rose ambient gradient</li>
+            <li>Elements: Smooth rounded pill buttons &amp; floating blobs</li>
+            <li>Pacing: Modern, luminous, immersive depth</li>
+          </ul>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="/model-2-soft-glass" class="launch-btn" style="flex: 1; background: #EE6983;">Open Model 2 ↗</a>
+          <button onclick="setLivePreview('/model-2-soft-glass', 'Model 2: Soft Glass')" class="launch-btn" style="background: transparent; border: 1px solid #EE6983; color: #EE6983;">Preview</button>
+        </div>
+      </div>
+
+      <!-- Model 3 Card -->
+      <div class="model-select-card">
+        <div>
+          <span class="model-badge m3-badge">Model 03</span>
+          <h2 class="model-name">Playful Creative Studio</h2>
+          <p class="model-desc">
+            Friendly creative-studio vibe. Bolder rose and rose-gold accents, rounded cards with bouncy micro-interactions, and big illustration with graphic circles.
+          </p>
+          <ul class="model-traits">
+            <li>Typography: Space Grotesk + Plus Jakarta Sans</li>
+            <li>Accents: Tilted sticker badges &amp; bouncy hovers</li>
+            <li>Hero: Large illustration framed in concentric circles</li>
+            <li>Pacing: Energetic, collegiate, delightfully tactile</li>
+          </ul>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="/model-3-playful" class="launch-btn" style="flex: 1; background: #DA8393; color: #0E1627;">Open Model 3 ↗</a>
+          <button onclick="setLivePreview('/model-3-playful', 'Model 3: Playful')" class="launch-btn" style="background: transparent; border: 1px solid #DA8393; color: #0E1627;">Preview</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Preview Sandbox -->
+    <div class="preview-section">
+      <div class="preview-bar">
+        <div>
+          <span class="badge-tag" style="background: #850E35; color: #FFF5E4;">INTERACTIVE PREVIEW</span>
+          <h3 id="current-preview-title" style="font-size: 1.25rem; color: #850E35; margin-top: 4px;">
+            Model 1: Editorial Magazine
+          </h3>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button onclick="setPreviewWidth('desktop')" id="btn-desktop" style="background: #850E35; color: #FFF5E4; border: none; padding: 6px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; cursor: pointer;">
+            🖥️ Desktop (100%)
+          </button>
+          <button onclick="setPreviewWidth('mobile')" id="btn-mobile" style="background: transparent; border: 1px solid #850E35; color: #850E35; padding: 6px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; cursor: pointer;">
+            📱 Mobile (414px)
+          </button>
+          <a id="btn-open-tab" href="/model-1-editorial" target="_blank" style="background: transparent; border: 1px solid var(--border-soft); color: var(--text-muted); padding: 6px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-decoration: none;">
+            New Tab ↗
+          </a>
+        </div>
+      </div>
+      <iframe id="live-iframe" class="preview-iframe" src="/model-1-editorial" title="Live Model Preview"></iframe>
+    </div>
+
+    <!-- Extracted Palette Reference Grid -->
+    <div style="margin-bottom: 60px;">
+      <div class="section-header">
+        <span class="section-tag">Design System</span>
+        <h2 class="section-title">Extracted Colour Palette</h2>
+        <p class="section-desc">Click any swatch to copy its exact hex code. Zero white, black, or blue used.</p>
+      </div>
+
+      <div class="palette-grid">
+        <div class="swatch-card" onclick="copyToClipboard('#850E35')">
+          <div class="swatch-color" style="background: #850E35;"></div>
+          <div class="swatch-name">Burgundy</div>
+          <div class="swatch-hex">#850E35</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#EE6983')">
+          <div class="swatch-color" style="background: #EE6983;"></div>
+          <div class="swatch-name">Rose</div>
+          <div class="swatch-hex">#EE6983</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#D26777')">
+          <div class="swatch-color" style="background: #D26777;"></div>
+          <div class="swatch-name">Rose Deep</div>
+          <div class="swatch-hex">#D26777</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#DA8393')">
+          <div class="swatch-color" style="background: #DA8393;"></div>
+          <div class="swatch-name">Rose Gold</div>
+          <div class="swatch-hex">#DA8393</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#BD8E89')">
+          <div class="swatch-color" style="background: #BD8E89;"></div>
+          <div class="swatch-name">Mauve</div>
+          <div class="swatch-hex">#BD8E89</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#7F6269')">
+          <div class="swatch-color" style="background: #7F6269;"></div>
+          <div class="swatch-name">Prune</div>
+          <div class="swatch-hex">#7F6269</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#FFC4C4')">
+          <div class="swatch-color" style="background: #FFC4C4;"></div>
+          <div class="swatch-name">Soft Pink</div>
+          <div class="swatch-hex">#FFC4C4</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#E5C5C1')">
+          <div class="swatch-color" style="background: #E5C5C1;"></div>
+          <div class="swatch-name">Pink</div>
+          <div class="swatch-hex">#E5C5C1</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#F4E1E0')">
+          <div class="swatch-color" style="background: #F4E1E0;"></div>
+          <div class="swatch-name">Blush</div>
+          <div class="swatch-hex">#F4E1E0</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#FFF5E4')">
+          <div class="swatch-color" style="background: #FFF5E4;"></div>
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#FFF5E4</div>
+        </div>
+        <div class="swatch-card" onclick="copyToClipboard('#0E1627')">
+          <div class="swatch-color" style="background: #0E1627;"></div>
+          <div class="swatch-name" style="color: #0E1627;">Navy (Text/Dark)</div>
+          <div class="swatch-hex">#0E1627</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div style="font-size: 1.1rem; font-weight: 700; color: #FFF5E4;">AI Study Podcast Creator</div>
+      <div style="font-size: 0.85rem; color: #E5C5C1;">
+        Capstone Showcase • B.Tech Information Technology
+      </div>
+      <div class="tools-pill-group">
+        <span class="tool-pill">NotebookLM</span>
+        <span class="tool-pill">ChatGPT-4o</span>
+        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Google Gen AI SDK (@google/genai)</span>
+        <span class="tool-pill">Leonardo AI</span>
+        <span class="tool-pill">Canva</span>
+        <span class="tool-pill">Chart.js</span>
+      </div>
+      <p style="font-size: 0.75rem; color: #BD8E89; margin-top: 8px;">
+        Designed &amp; Engineered with 3 unique models sharing unified JSON data architecture.
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/shared-app.js"></script>
+  <script>
+    function setLivePreview(url, title) {
+      const iframe = document.getElementById('live-iframe');
+      const titleEl = document.getElementById('current-preview-title');
+      const newTabBtn = document.getElementById('btn-open-tab');
+      if (iframe) iframe.src = url;
+      if (titleEl) titleEl.textContent = title;
+      if (newTabBtn) newTabBtn.href = url;
+      document.querySelector('.preview-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function setPreviewWidth(mode) {
+      const iframe = document.getElementById('live-iframe');
+      const btnDesktop = document.getElementById('btn-desktop');
+      const btnMobile = document.getElementById('btn-mobile');
+
+      if (mode === 'mobile') {
+        iframe.classList.add('iframe-mobile');
+        btnMobile.style.background = '#850E35';
+        btnMobile.style.color = '#FFF5E4';
+        btnDesktop.style.background = 'transparent';
+        btnDesktop.style.color = '#850E35';
+      } else {
+        iframe.classList.remove('iframe-mobile');
+        btnDesktop.style.background = '#850E35';
+        btnDesktop.style.color = '#FFF5E4';
+        btnMobile.style.background = 'transparent';
+        btnMobile.style.color = '#850E35';
+      }
+    }
+  </script>
+</body>
+</html>
